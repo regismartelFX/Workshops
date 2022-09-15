@@ -17,8 +17,8 @@ Topics:
 For each topic:
 
 - High-level explanation resting on M$ documentation (browse [https://docs.microsoft.com/](https://docs.microsoft.com/) instead of Powerpoint slides)
-- Demonstrate suggested best practice in Azure
-- Known issues and limitations
+- Demonstrate suggested best practice in Azure (🖥️)
+- Known issues and limitations (🚩)
 - Questions from audience
 
 ## Resiliency & High-Availability
@@ -36,20 +36,22 @@ IaaS:
   - [https://docs.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction](https://docs.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction)
   - 🖥️ Recovery Services Vault
 
-    - 🚩 [Tradeoffs between lower costs and higher availability](https://docs.microsoft.com/en-ca/azure/storage/common/storage-redundancy)
-    - 🚩 One per subscription, per Azure region
+    - Restrict access over RSVs by using RBAC (e.g., Azure Backup administrator, contributor, operator roles)
+    - Leverage [Azure Backup Instant Restore capability](https://docs.microsoft.com/en-us/azure/backup/backup-instant-restore-capability), which uses snapshots of the VMs
+    - 🚩 [Tradeoffs between lower costs and higher availability](https://docs.microsoft.com/en-ca/azure/storage/common/storage-redundancy).
+    - 🚩 One per subscription, per Azure region.
     - Allows for [Cross Region Restore](https://docs.microsoft.com/en-us/azure/backup/backup-create-rs-vault#set-cross-region-restore)
 
   - 🖥️ Manage VM backups with Azure policies
-    - Backup policies ≠ Azure policies for backup
-    - 🚩 Azure policies for backup are not compatible with Lift & Shifted VMs (filters)
+    - Backup policies ≠ Azure policies for backup.
+    - 🚩 Azure policies for backup are not compatible with Lift & Shifted VMs (filters).
   - 🚩 Impossible to restore individual files without restoring the full disk. Use with caution with file servers.
 
 - SQL:
 
   - [https://docs.microsoft.com/en-us/azure/backup/backup-azure-sql-database](https://docs.microsoft.com/en-us/azure/backup/backup-azure-sql-database)
-  - Replaces the SQL-Agent managed backups and saves the disk space
-  - Centralize management through [Backup center](https://docs.microsoft.com/en-us/azure/backup/backup-center-overview)
+  - Replaces the SQL-Agent managed backups and saves the disk space.
+  - Centralize management through [Backup center](https://docs.microsoft.com/en-us/azure/backup/backup-center-overview).
   - Also available for other database management system (DBMS):
 
     - SAP HANA
