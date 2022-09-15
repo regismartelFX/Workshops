@@ -41,6 +41,8 @@ IaaS:
     - 🚩 [Tradeoffs between lower costs and higher availability](https://docs.microsoft.com/en-ca/azure/storage/common/storage-redundancy).
     - 🚩 One per subscription, per Azure region.
     - Allows for [Cross Region Restore](https://docs.microsoft.com/en-us/azure/backup/backup-create-rs-vault#set-cross-region-restore)
+    - [14 days built-in soft-delete feature is enabled by default for all the Recovery Services vaults](https://docs.microsoft.com/en-us/azure/backup/backup-azure-security-feature-cloud#soft-delete).
+    - By default, the [data in the Recovery Services vault is encrypted](https://docs.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview#encryption-of-backup-data-using-platform-managed-keys) using Microsoft managed keys.
 
   - 🖥️ Manage VM backups with Azure policies
     - Backup policies ≠ Azure policies for backup.
