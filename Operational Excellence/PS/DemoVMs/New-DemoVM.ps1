@@ -4,7 +4,7 @@
 Param
 (
     [Parameter(Mandatory = $True)][ValidateNotNullOrEmpty()][String]$ContextTenant,
-    [Parameter(Mandatory = $True)][ValidateNotNullOrEmpty()][String]$ContextSubscription,    
+    [Parameter(Mandatory = $True)][ValidateNotNullOrEmpty()][String]$ContextSubscription,
     [Parameter(Mandatory = $False)][ValidateNotNullOrEmpty()][String]$NamingConventionDescriptiveContext = 'test',
     [Parameter(Mandatory = $False)][ValidateNotNullOrEmpty()][String]$NamingConventionEnvironmentCode = 't',
     [Parameter(Mandatory = $False)][ValidateRange(1, 99)][Int]$NamingConventionSequentialNumber = 1
