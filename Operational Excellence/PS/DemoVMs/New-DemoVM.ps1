@@ -80,9 +80,9 @@ $VMOperatingSystem = @{
 }
 
 $VMSourceImage = @{
-    PublisherName = 'MicrosoftWindowsDesktop'
-    Offer         = 'windows-11'
-    Skus          = 'win11-21h2-pro'
+    PublisherName = 'MicrosoftWindowsServer' #'MicrosoftWindowsDesktop'
+    Offer         = 'WindowsServer' #'windows-11'
+    Skus          = '2022-datacenter' #'win11-21h2-pro'
     Version       = 'latest'
 }
 
@@ -126,7 +126,7 @@ If (!$AzVirtualNetwork) {
     $AzVirtualNetwork = New-AzVirtualNetwork -Name $VirtualNetwork.Name -ResourceGroupName $VirtualNetwork.ResourceGroupName -Location $Context.Location -AddressPrefix $VirtualNetwork.AddressPrefix -Subnet $SubnetConfig
 }
 
-$SubnetConfig = $AzVirtualNetwork | Get-AzVirtualNetworkSubnetConfig -Name $SubnetConfigName
+$SubnetConfig = $AzVirtualNetwork | Get-AzVirtualNetworkSubnetConfig -Name $VirtualNetwork.SubnetConfigName
 $AzNetworkInterface = New-AzNetworkInterface -Name $VMNetworkInterface.AzNetworkInterfaceName -ResourceGroupName $VM.ResourceGroupName -Location $Context.Location -Subnet $SubnetConfig -Force
 
 
