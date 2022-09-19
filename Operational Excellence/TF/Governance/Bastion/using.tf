@@ -1,0 +1,3 @@
+module "info" {
+  source = "../../Info/"
+}
