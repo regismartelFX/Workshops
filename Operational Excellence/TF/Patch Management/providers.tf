@@ -3,6 +3,9 @@ provider "azurerm" {
   features {}
 }
 
+provider "azapi" {
+}
+
 provider "azurerm" {
   alias           = "demo_1"
   subscription_id = "id Subsription #1"

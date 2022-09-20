@@ -1,23 +1,4 @@
-# terraform {
-#   required_providers {
-#     azapi = {
-#       source = "azure/azapi"
-#     }
-#   }
-# }
 
-# provider "azurerm" {
-
-#   features {}
-# }
-
-# provider "azapi" {
-# }
-
-# locals {
-#   location                    = "canadacentral"
-#   automation_account_location = "canadacentral"
-# }
 
 # resource "azurerm_resource_group" "rg" {
 
