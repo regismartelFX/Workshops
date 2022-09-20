@@ -1,10 +1,3 @@
-data "azurerm_resource_group" "demo" {
-  provider = azurerm.demo_1
-
-  name = "rg-intactoperationalexcellence-p01"
-}
-
-
 resource "azurerm_recovery_services_vault" "demo" {
   provider = azurerm.demo_1
 
