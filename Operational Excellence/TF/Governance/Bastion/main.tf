@@ -13,7 +13,7 @@ data "azurerm_virtual_network" "demo" {
 }
 
 
-resource "azurerm_subnet" "demo" {
+resource "azurerm_subnet" "bastionsubnet" {
   provider = azurerm.demo_1
 
   name                 = "AzureBastionSubnet"
@@ -42,7 +42,7 @@ resource "azurerm_bastion_host" "demo" {
 
   ip_configuration {
     name                 = "ipconfig"
-    subnet_id            = azurerm_subnet.demo.id
+    subnet_id            = azurerm_subnet.bastionsubnet.id
     public_ip_address_id = azurerm_public_ip.demo.id
   }
 }
