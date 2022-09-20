@@ -53,3 +53,33 @@ resource "azurerm_backup_policy_vm" "demo_daily" {
     months   = ["January"]
   }
 }
+
+
+resource "azurerm_backup_policy_vm_workload" "demo_sql_daily" {
+  provider = azurerm.demo_1
+
+  name                = "SQLFullDaily"
+  resource_group_name = data.azurerm_resource_group.demo.name
+  recovery_vault_name = azurerm_recovery_services_vault.demo.name
+
+  workload_type = "SQLDataBase"
+
+  settings {
+    time_zone           = "Eastern Standard Time"
+    compression_enabled = true
+  }
+
+  protection_policy {
+    policy_type = "Full"
+
+    backup {
+      frequency = "Daily"
+      time      = "19:30"
+      weekdays  = []
+    }
+
+    retention_daily {
+      count = 7
+    }
+  }
+}
