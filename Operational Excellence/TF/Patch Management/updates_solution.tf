@@ -1,62 +1,28 @@
+resource "azurerm_log_analytics_linked_service" "demo" {
+  provider = azurerm.demo_1
 
+  resource_group_name = data.azurerm_resource_group.demo.name
+  workspace_id        = data.azurerm_log_analytics_workspace.demo.id
+  read_access_id      = data.azurerm_automation_account.demo.id
+}
 
-# resource "azurerm_resource_group" "rg" {
+resource "azurerm_log_analytics_solution" "update_solution" {
+  provider = azurerm.demo_1
 
-#   name     = "rg-updtest-t01"
-#   location = local.location
-# }
+  solution_name         = "Updates"
+  location              = module.info.primary_region.name
+  resource_group_name   = data.azurerm_resource_group.demo.name
+  workspace_resource_id = data.azurerm_log_analytics_workspace.demo.id
+  workspace_name        = data.azurerm_log_analytics_workspace.demo.name
+  plan {
+    publisher = "Microsoft"
+    product   = "OMSGallery/Updates"
+  }
 
-# resource "azurerm_log_analytics_workspace" "log_analytics_workspace" {
-
-#   name                = "log-updtest-t01"
-#   location            = azurerm_resource_group.rg.location
-#   resource_group_name = azurerm_resource_group.rg.name
-#   sku                 = "PerGB2018"
-#   retention_in_days   = 30
-# }
-
-# resource "azurerm_automation_account" "automation_account" {
-
-#   name                = "aa-updtest-t01"
-#   location            = local.automation_account_location
-#   resource_group_name = azurerm_resource_group.rg.name
-#   sku_name            = "Basic"
-
-#   identity {
-#     type = "SystemAssigned"
-#   }
-# }
-
-# resource "azurerm_role_assignment" "contributor" {
-
-#   scope                = "/subscriptions/98bdc428-ae8c-413a-b970-c9d152a17ced"
-#   role_definition_name = "Contributor"
-#   principal_id         = azurerm_automation_account.automation_account.identity[0].principal_id
-# }
-
-# resource "azurerm_log_analytics_linked_service" "autoacc_linked_log_workspace" {
-
-#   resource_group_name = azurerm_resource_group.rg.name
-#   workspace_id        = azurerm_log_analytics_workspace.log_analytics_workspace.id
-#   read_access_id      = azurerm_automation_account.automation_account.id
-# }
-
-# resource "azurerm_log_analytics_solution" "update_solution" {
-
-#   depends_on = [
-#     azurerm_log_analytics_linked_service.autoacc_linked_log_workspace
-#   ]
-
-#   solution_name         = "Updates"
-#   location              = azurerm_resource_group.rg.location
-#   resource_group_name   = azurerm_resource_group.rg.name
-#   workspace_resource_id = azurerm_log_analytics_workspace.log_analytics_workspace.id
-#   workspace_name        = azurerm_log_analytics_workspace.log_analytics_workspace.name
-#   plan {
-#     publisher = "Microsoft"
-#     product   = "OMSGallery/Updates"
-#   }
-# }
+  depends_on = [
+    azurerm_log_analytics_linked_service.demo
+  ]
+}
 
 # resource "azapi_resource" "demoa" {
 #   type      = "Microsoft.Automation/automationAccounts/softwareUpdateConfigurations@2019-06-01"
