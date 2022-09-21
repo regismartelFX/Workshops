@@ -1,3 +1,8 @@
+data "azurerm_subscription" "demo_1" {
+  subscription_id = "bcd14a1b-f207-4552-a1da-f33f5efe4b2e"
+}
+
+
 data "azurerm_resource_group" "demo" {
   provider = azurerm.demo_1
 
