@@ -3,11 +3,68 @@ data "azurerm_subscription" "demo_1" {
 }
 
 
+data "azurerm_client_config" "current" {}
+
+
 resource "azurerm_resource_group" "demo" {
   provider = azurerm.demo_1
 
   name     = "rg-intactoperationalexcellence-p01"
   location = module.info.primary_region.name
+}
+
+
+resource "azurerm_key_vault" "demo" {
+  provider = azurerm.demo_1
+
+  name                            = "kvdemoccpkn7s0"
+  location                        = module.info.primary_region.name
+  resource_group_name             = azurerm_resource_group.demo.name
+  enabled_for_disk_encryption     = true
+  enabled_for_template_deployment = true
+  tenant_id                       = data.azurerm_client_config.current.tenant_id
+  soft_delete_retention_days      = 7
+  purge_protection_enabled        = false
+
+  sku_name = "standard"
+
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
+
+    key_permissions = [
+      "Get",
+    ]
+
+    secret_permissions = [
+      "Get",
+      "Set"
+    ]
+
+    storage_permissions = [
+      "Get",
+    ]
+  }
+}
+
+
+resource "azurerm_key_vault_secret" "admin" {
+  provider = azurerm.demo_1
+
+  name         = "default-vm-admin-account-name"
+  value        = "Demo"
+  content_type = "Account name"
+  key_vault_id = azurerm_key_vault.demo.id
+}
+
+
+resource "azurerm_key_vault_secret" "adminpwd" {
+  provider = azurerm.demo_1
+
+  name         = "default-vm-password"
+  value        = "Change this value manually in the portal."
+  content_type = "Password"
+  key_vault_id = azurerm_key_vault.demo.id
 }
 
 
