@@ -1,3 +1,0 @@
-module "info" {
-  source = "../../Info/"
-}

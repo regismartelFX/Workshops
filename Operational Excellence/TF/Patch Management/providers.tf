@@ -7,7 +7,7 @@ provider "azapi" {
 }
 
 provider "azurerm" {
-  alias           = "demo_1"
+  alias           = "sandbox"
   subscription_id = "id Subsription #1"
   tenant_id       = "tenant_id"
 

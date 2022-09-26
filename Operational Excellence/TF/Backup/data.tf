@@ -1,5 +1,5 @@
 data "azurerm_resource_group" "demo" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   name = "rg-intactoperationalexcellence-p01"
 }

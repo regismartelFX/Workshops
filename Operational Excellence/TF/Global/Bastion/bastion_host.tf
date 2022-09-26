@@ -1,5 +1,5 @@
 resource "azurerm_subnet" "bastionsubnet" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   name                 = "AzureBastionSubnet"
   resource_group_name  = data.azurerm_resource_group.demo.name
@@ -10,7 +10,7 @@ resource "azurerm_subnet" "bastionsubnet" {
 
 #https://learn.microsoft.com/en-us/azure/bastion/configuration-settings#public-ip
 resource "azurerm_public_ip" "demo" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   name                = "pip-demobastion-cc-p01"
   location            = module.info.primary_region.name

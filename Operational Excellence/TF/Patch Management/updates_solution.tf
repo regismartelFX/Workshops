@@ -1,5 +1,5 @@
 resource "azurerm_log_analytics_linked_service" "demo" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   resource_group_name = data.azurerm_resource_group.demo.name
   workspace_id        = data.azurerm_log_analytics_workspace.demo.id
@@ -7,7 +7,7 @@ resource "azurerm_log_analytics_linked_service" "demo" {
 }
 
 resource "azurerm_log_analytics_solution" "update_solution" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   solution_name         = "Updates"
   location              = module.info.primary_region.name
@@ -62,12 +62,12 @@ resource "azapi_resource" "windows_group_a" {
             {
               locations = []
               scope = [
-                data.azurerm_subscription.demo_1.id
+                data.azurerm_subscription.sandbox.id
               ]
               tagSettings : {
                 filterOperator : "All"
                 tags : {
-                  "patchingpolicy" : ["Windows Group A"]
+                  "PatchingPolicy" : ["Windows Group A"]
                 }
               }
             }
@@ -118,12 +118,12 @@ resource "azapi_resource" "windows_group_b" {
             {
               locations = []
               scope = [
-                data.azurerm_subscription.demo_1.id
+                data.azurerm_subscription.sandbox.id
               ]
               tagSettings : {
                 filterOperator : "All"
                 tags : {
-                  "patchingpolicy" : ["Windows Group B"]
+                  "PatchingPolicy" : ["Windows Group B"]
                 }
               }
             }

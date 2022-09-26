@@ -1,7 +1,7 @@
 resource "azurerm_recovery_services_vault" "demo" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
-  name                = "rsv-intactoperationalexcellencecc-p01"
+  name                = "rsv-${module.info.descriptive_context}-${module.info.primary_region.code}-${module.info.sandbox.short_name}01"
   resource_group_name = data.azurerm_resource_group.demo.name
   location            = module.info.primary_region.name
   sku                 = "Standard"
@@ -15,7 +15,7 @@ resource "azurerm_recovery_services_vault" "demo" {
 
 
 resource "azurerm_backup_policy_vm" "demo_daily" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   name                = "DEMO-35d-12m-7y"
   resource_group_name = data.azurerm_resource_group.demo.name
@@ -49,7 +49,7 @@ resource "azurerm_backup_policy_vm" "demo_daily" {
 
 
 resource "azurerm_backup_policy_vm_workload" "demo_sql_daily" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   name                = "SQLFullDaily"
   resource_group_name = data.azurerm_resource_group.demo.name

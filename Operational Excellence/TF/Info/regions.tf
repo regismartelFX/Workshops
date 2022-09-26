@@ -7,6 +7,7 @@ output "primary_region" {
   }
 }
 
+
 output "secondary_region" {
   description = "Azure region where backup / fail over resources should be deployed."
   value = {

@@ -1,7 +1,7 @@
 resource "azurerm_data_protection_backup_vault" "demo" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
-  name                = "bv-demo-cc-p01"
+  name                = "bv-${module.info.descriptive_context}-${module.info.primary_region.code}-${module.info.sandbox.short_name}01"
   resource_group_name = data.azurerm_resource_group.demo.name
   location            = module.info.primary_region.name
   datastore_type      = "VaultStore"
@@ -14,7 +14,7 @@ resource "azurerm_data_protection_backup_vault" "demo" {
 
 
 resource "azurerm_role_assignment" "sadiag" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   scope                = data.azurerm_storage_account.sadiag.id
   role_definition_name = "Storage Account Backup Contributor"
@@ -23,7 +23,7 @@ resource "azurerm_role_assignment" "sadiag" {
 
 
 resource "azurerm_data_protection_backup_policy_blob_storage" "demo" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   name               = "DEMO-35d"
   vault_id           = azurerm_data_protection_backup_vault.demo.id
@@ -32,7 +32,7 @@ resource "azurerm_data_protection_backup_policy_blob_storage" "demo" {
 
 
 resource "azurerm_data_protection_backup_instance_blob_storage" "demo" {
-  provider = azurerm.demo_1
+  provider = azurerm.sandbox
 
   name               = "demo-backup-sadiag"
   vault_id           = azurerm_data_protection_backup_vault.demo.id

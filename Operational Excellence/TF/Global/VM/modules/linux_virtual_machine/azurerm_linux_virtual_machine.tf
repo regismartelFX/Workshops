@@ -83,16 +83,17 @@ resource "azurerm_network_interface" "vm" {
 }
 
 
-resource "azurerm_windows_virtual_machine" "vm" {
+resource "azurerm_linux_virtual_machine" "vm" {
   count = var.quantity
 
-  name                = format("vm-${var.descriptive_context}-${var.environment}%02s", count.index + var.seed)
-  resource_group_name = azurerm_resource_group.vm[count.index].name
-  location            = var.location
-  size                = var.size
-  admin_username      = data.azurerm_key_vault_secret.admin.value
-  admin_password      = data.azurerm_key_vault_secret.adminpwd.value
-  provision_vm_agent  = true
+  name                            = format("vm-${var.descriptive_context}-${var.environment}%02s", count.index + var.seed)
+  resource_group_name             = azurerm_resource_group.vm[count.index].name
+  location                        = var.location
+  size                            = var.size
+  admin_username                  = data.azurerm_key_vault_secret.admin.value
+  admin_password                  = data.azurerm_key_vault_secret.adminpwd.value
+  disable_password_authentication = false
+  provision_vm_agent              = true
   network_interface_ids = [
     azurerm_network_interface.vm[count.index].id,
   ]
@@ -117,14 +118,14 @@ resource "azurerm_windows_virtual_machine" "vm" {
 }
 
 
-resource "azurerm_virtual_machine_extension" "mma" {
+resource "azurerm_virtual_machine_extension" "oms" {
   count = var.quantity
 
-  name = "${azurerm_windows_virtual_machine.vm[count.index].name}-mma"
+  name = "${azurerm_windows_virtual_machine.vm[count.index].name}-oms"
 
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
-  type                       = "MicrosoftMonitoringAgent"
-  type_handler_version       = "1.0"
+  type                       = "OmsAgentForLinux"
+  type_handler_version       = "1.13"
   auto_upgrade_minor_version = true
 
   virtual_machine_id = azurerm_windows_virtual_machine.vm[count.index].id
