@@ -1,10 +1,6 @@
 provider "azurerm" {
 
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy = true
-    }
-  }
+  features {}
 }
 
 provider "azurerm" {
@@ -12,11 +8,7 @@ provider "azurerm" {
   subscription_id = "id Subsription #1"
   tenant_id       = "tenant_id"
 
-  features {
-    key_vault {
-      purge_soft_delete_on_destroy = true
-    }
-  }
+  features {}
 }
 
 # provider "azurerm" {

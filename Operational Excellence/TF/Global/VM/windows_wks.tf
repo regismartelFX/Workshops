@@ -5,7 +5,7 @@ module "windows_wks" {
   }
 
   quantity                            = 2
-  seed                                = 3
+  seed                                = 5
   descriptive_context                 = "${module.info.descriptive_context}wks"
   environment                         = module.info.sandbox.short_name
   location                            = module.info.primary_region.name

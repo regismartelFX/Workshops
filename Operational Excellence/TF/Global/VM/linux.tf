@@ -5,7 +5,7 @@ module "linux" {
   }
 
   quantity                            = 2
-  seed                                = 5
+  seed                                = 1
   descriptive_context                 = "${module.info.descriptive_context}lnx"
   environment                         = module.info.sandbox.short_name
   location                            = module.info.primary_region.name

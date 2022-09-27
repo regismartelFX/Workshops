@@ -39,7 +39,7 @@ resource "azurerm_key_vault_secret" "admin" {
   provider = azurerm.sandbox
 
   name         = "default-vm-admin-account-name"
-  value        = "Demo"
+  value        = module.info.default_vm_admin_account_name
   content_type = "Account name"
   key_vault_id = azurerm_key_vault.core.id
 }

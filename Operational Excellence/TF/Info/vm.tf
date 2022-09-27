@@ -1,12 +1,19 @@
+output "default_vm_admin_account_name" {
+  description = "Name of the default admin account created with the VMs."
+  value       = "Demo"
+}
+
+
 output "linux_source_image_reference" {
   description = "Preferred publisher, offer, SKU and version for the Linux VMs."
   value = {
     publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "20.04-LTS"
+    offer     = "0001-com-ubuntu-server-focal-daily"
+    sku       = "20_04-daily-lts-gen2"
     version   = "latest"
   }
 }
+
 
 output "linux_size" {
   description = "Preferred size for the Linux VMs."

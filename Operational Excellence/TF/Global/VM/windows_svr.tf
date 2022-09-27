@@ -5,7 +5,7 @@ module "windows_svr" {
   }
 
   quantity                            = 2
-  seed                                = 1
+  seed                                = 3
   descriptive_context                 = "${module.info.descriptive_context}svr"
   environment                         = module.info.sandbox.short_name
   location                            = module.info.primary_region.name
