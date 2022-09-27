@@ -1,8 +1,8 @@
-resource "azurerm_recovery_services_vault" "demo" {
+resource "azurerm_recovery_services_vault" "backup" {
   provider = azurerm.sandbox
 
   name                = "rsv-${module.info.descriptive_context}-${module.info.primary_region.code}-${module.info.sandbox.short_name}01"
-  resource_group_name = data.azurerm_resource_group.demo.name
+  resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
   location            = module.info.primary_region.name
   sku                 = "Standard"
   storage_mode_type   = "LocallyRedundant"
@@ -14,12 +14,12 @@ resource "azurerm_recovery_services_vault" "demo" {
 }
 
 
-resource "azurerm_backup_policy_vm" "demo_daily" {
+resource "azurerm_backup_policy_vm" "backup_daily" {
   provider = azurerm.sandbox
 
   name                = "DEMO-35d-12m-7y"
-  resource_group_name = data.azurerm_resource_group.demo.name
-  recovery_vault_name = azurerm_recovery_services_vault.demo.name
+  resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
+  recovery_vault_name = azurerm_recovery_services_vault.backup.name
 
   timezone                       = "Eastern Standard Time"
   instant_restore_retention_days = 2
@@ -48,12 +48,12 @@ resource "azurerm_backup_policy_vm" "demo_daily" {
 }
 
 
-resource "azurerm_backup_policy_vm_workload" "demo_sql_daily" {
+resource "azurerm_backup_policy_vm_workload" "backup_sql_daily" {
   provider = azurerm.sandbox
 
   name                = "SQLFullDaily"
-  resource_group_name = data.azurerm_resource_group.demo.name
-  recovery_vault_name = azurerm_recovery_services_vault.demo.name
+  resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
+  recovery_vault_name = azurerm_recovery_services_vault.backup.name
 
   workload_type = "SQLDataBase"
 

@@ -17,7 +17,6 @@ data "terraform_remote_state" "core" {
     key                  = "key.terraform.tfstate"
   }
 }
-}
 
 
 data "terraform_remote_state" "vm" {
