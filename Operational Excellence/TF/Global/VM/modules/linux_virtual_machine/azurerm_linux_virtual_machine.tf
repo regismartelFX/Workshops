@@ -1,9 +1,3 @@
-data "azurerm_resource_group" "core" {
-
-  name = var.core_resource_group_name
-}
-
-
 data "azurerm_resource_group" "stdiag" {
 
   name = var.stdiag_resource_group_name
@@ -14,6 +8,12 @@ data "azurerm_storage_account" "stdiag" {
 
   name                = var.stdiag_name
   resource_group_name = data.azurerm_resource_group.stdiag.name
+}
+
+
+data "azurerm_resource_group" "core" {
+
+  name = var.core_resource_group_name
 }
 
 
@@ -97,7 +97,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   network_interface_ids = [
     azurerm_network_interface.vm[count.index].id,
   ]
-  tags = var.tags
+  tags = { for i, v in var.tags : i => element(v, count.index) }
 
   boot_diagnostics {
     storage_account_uri = data.azurerm_storage_account.stdiag.primary_blob_endpoint
@@ -121,14 +121,14 @@ resource "azurerm_linux_virtual_machine" "vm" {
 resource "azurerm_virtual_machine_extension" "oms" {
   count = var.quantity
 
-  name = "${azurerm_windows_virtual_machine.vm[count.index].name}-oms"
+  name = "${azurerm_linux_virtual_machine.vm[count.index].name}-oms"
 
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
   type                       = "OmsAgentForLinux"
   type_handler_version       = "1.13"
   auto_upgrade_minor_version = true
 
-  virtual_machine_id = azurerm_windows_virtual_machine.vm[count.index].id
+  virtual_machine_id = azurerm_linux_virtual_machine.vm[count.index].id
 
   settings = <<SETTINGS
   {

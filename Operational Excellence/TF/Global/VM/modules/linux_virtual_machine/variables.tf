@@ -110,6 +110,6 @@ variable "source_image_reference" {
 
 
 variable "tags" {
-  type    = map(string)
+  type    = any
   default = {}
 }

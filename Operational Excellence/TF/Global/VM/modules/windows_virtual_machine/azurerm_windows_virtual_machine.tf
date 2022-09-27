@@ -1,9 +1,3 @@
-data "azurerm_resource_group" "core" {
-
-  name = var.core_resource_group_name
-}
-
-
 data "azurerm_resource_group" "stdiag" {
 
   name = var.stdiag_resource_group_name
@@ -14,6 +8,12 @@ data "azurerm_storage_account" "stdiag" {
 
   name                = var.stdiag_name
   resource_group_name = data.azurerm_resource_group.stdiag.name
+}
+
+
+data "azurerm_resource_group" "core" {
+
+  name = var.core_resource_group_name
 }
 
 
@@ -61,7 +61,7 @@ data "azurerm_log_analytics_workspace" "core" {
 
 
 resource "azurerm_resource_group" "vm" {
-  count = var.quantity
+  count    = var.quantity
 
   name     = format("rg-vm${var.descriptive_context}-${var.environment}%02s", count.index + var.seed)
   location = var.location
@@ -69,7 +69,7 @@ resource "azurerm_resource_group" "vm" {
 
 
 resource "azurerm_network_interface" "vm" {
-  count = var.quantity
+  count    = var.quantity
 
   name                = format("vm-${var.descriptive_context}-${var.environment}%02s-nic01", count.index + var.seed)
   location            = var.location
@@ -84,7 +84,7 @@ resource "azurerm_network_interface" "vm" {
 
 
 resource "azurerm_windows_virtual_machine" "vm" {
-  count = var.quantity
+  count    = var.quantity
 
   name                = format("vm-${var.descriptive_context}-${var.environment}%02s", count.index + var.seed)
   resource_group_name = azurerm_resource_group.vm[count.index].name
@@ -96,7 +96,8 @@ resource "azurerm_windows_virtual_machine" "vm" {
   network_interface_ids = [
     azurerm_network_interface.vm[count.index].id,
   ]
-  tags = var.tags
+  tags = { for i, v in var.tags : i => element(v, count.index) }
+
 
   boot_diagnostics {
     storage_account_uri = data.azurerm_storage_account.stdiag.primary_blob_endpoint
@@ -118,7 +119,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
 
 
 resource "azurerm_virtual_machine_extension" "mma" {
-  count = var.quantity
+  count    = var.quantity
 
   name = "${azurerm_windows_virtual_machine.vm[count.index].name}-mma"
 
