@@ -8,8 +8,8 @@ output "linux_source_image_reference" {
   description = "Preferred publisher, offer, SKU and version for the Linux VMs."
   value = {
     publisher = "Canonical"
-    offer     = "0001-com-ubuntu-server-focal-daily"
-    sku       = "20_04-daily-lts-gen2"
+    offer     = "0001-com-ubuntu-server-focal"
+    sku       = "20_04-lts-gen2"
     version   = "latest"
   }
 }
