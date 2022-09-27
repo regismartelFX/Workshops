@@ -28,7 +28,19 @@ output "core_log_analytics_workspace_name" {
 }
 
 
+output "core_log_analytics_workspace_id" {
+
+  value = azurerm_log_analytics_workspace.core.id
+}
+
+
 output "core_automation_account_name" {
 
   value = azurerm_automation_account.core.name
+}
+
+
+output "core_automation_account_id" {
+
+  value = azurerm_automation_account.core.id
 }
