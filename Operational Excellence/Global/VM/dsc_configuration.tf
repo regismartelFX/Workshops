@@ -1,8 +1,8 @@
 resource "azurerm_automation_dsc_configuration" "sql" {
-  name                    = "test"
-  resource_group_name     = azurerm_resource_group.example.name
-  automation_account_name = azurerm_automation_account.example.name
-  location                = azurerm_resource_group.example.location
+  name                    = "SQLInstall"
+  resource_group_name     = data.terraform_remote_state.core.outputs.core_resource_group_name
+  automation_account_name = data.terraform_remote_state.core.outputs.core_automation_account_name
+  location                = module.info.primary_region.name
   content_embedded        = <<CONTENT_EMBEDDED
 Configuration SQLInstall
 {
