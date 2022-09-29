@@ -1,3 +1,9 @@
+output "dsc_sqlinstall" {
+  description = "1 to install SQLServer using DSC, 0 to skip."
+  value       = 0
+}
+
+
 output "default_vm_admin_account_name" {
   description = "Name of the default admin account created with the VMs."
   value       = "Demo"
