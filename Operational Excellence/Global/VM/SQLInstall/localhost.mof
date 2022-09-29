@@ -1,0 +1,67 @@
+/*
+@TargetNode='localhost'
+@GeneratedBy=regis.martel
+@GenerationDate=09/29/2022 09:15:03
+@GenerationHost=FXCOYUL3PLAP361
+*/
+
+instance of MSFT_RoleResource as $MSFT_RoleResource1ref
+{
+ModuleName = "PsDesiredStateConfiguration";
+ Ensure = "Present";
+ SourceInfo = "::8::11::WindowsFeature";
+ ResourceID = "[WindowsFeature]NetFramework45";
+ Name = "NET-Framework-45-Core";
+
+ModuleVersion = "1.0";
+ ConfigurationName = "SQLInstall";
+};
+instance of DSC_SqlSetup as $DSC_SqlSetup1ref
+{
+SourcePath = "C:\\Sources\\SQL2019\\";
+ ModuleName = "SqlServerDsc";
+ SQLSysAdminAccounts = {
+    "Administrators"
+};
+ ModuleVersion = "16.0.0";
+ SourceInfo = "::14::11::SqlSetup";
+ ResourceID = "[SqlSetup]InstallDefaultInstance";
+ InstanceName = "MSSQLSERVER";
+ Features = "SQLENGINE";
+
+DependsOn = {
+    "[WindowsFeature]NetFramework45"};
+ ConfigurationName = "SQLInstall";
+};
+instance of MSFT_PackageResource as $MSFT_PackageResource1ref
+{
+ProductId = "ECC23FD6-535B-43CB-894B-F47FA605EBB3";
+ ModuleName = "PsDesiredStateConfiguration";
+ Ensure = "Present";
+ SourceInfo = "::23::11::Package";
+ Arguments = "/install /passive /norestart";
+ ResourceID = "[Package]SSMS";
+ Name = "SSMS-Setup-ENU";
+ Path = "C:\\Sources\\SSMS\\SSMS-Setup-ENU.exe";
+
+ModuleVersion = "1.0";
+ ConfigurationName = "SQLInstall";
+};
+instance of OMI_ConfigurationDocument
+
+                    {
+ Version="2.0.0";
+
+                        MinimumCompatibleVersion = "1.0.0";
+
+                        CompatibleVersionAdditionalProperties= {"Omi_BaseResource:ConfigurationName"};
+
+                        Author="regis.martel";
+
+                        GenerationDate="09/29/2022 09:15:03";
+
+                        GenerationHost="FXCOYUL3PLAP361";
+
+                        Name="SQLInstall";
+
+                    };
