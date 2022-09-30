@@ -21,3 +21,28 @@ resource "azurerm_monitor_activity_log_alert" "servicehealth" {
     action_group_id = azurerm_monitor_action_group.monlog.id
   }
 }
+
+
+resource "azurerm_monitor_activity_log_alert" "resourcehealth" {
+  provider = azurerm.sandbox
+
+  name                = "Monitor Azure Resource Health ${module.info.descriptive_context}"
+  resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
+  scopes              = [data.azurerm_subscription.sandbox.id]
+  description         = "Monitor Azure Resource Health"
+  enabled             = true
+
+  criteria {
+    category = "ResourceHealth"
+
+    resource_health {
+      current  = ["Degraded", "Unavailable", "Unknown"]
+      previous = ["Available", "Degraded", "Unavailable", "Unknown"]
+      reason   = ["PlatformInitiated", "Unknown"]
+    }
+  }
+
+  action {
+    action_group_id = azurerm_monitor_action_group.monlog.id
+  }
+}
