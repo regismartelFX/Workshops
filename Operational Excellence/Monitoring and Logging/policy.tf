@@ -66,9 +66,7 @@ module "Deploy_Diagnostic_Settings_to_Log_Analytics_workspace_initiative" {
 
   management_group_id = data.azurerm_management_group.root.id
   definition_references = [
-    #Deploy Diagnostic Settings for Key Vault to Log Analytics workspace
-    #Deploy Diagnostic Settings for Recovery Services Vault to Log Analytics workspace for resource specific categories.
-    #Deploy Diagnostic Settings for Network Security Groups???
+    "/providers/Microsoft.Authorization/policyDefinitions/bef3f64c-5290-43b7-85b0-9b254eef4c47", #Deploy Diagnostic Settings for Key Vault to Log Analytics workspace
     module.Deploy_Diagnostic_Settings_for_Automation_to_Log_Analytics_workspace.policy_definition_id,
     module.Deploy_Diagnostic_Settings_for_Network_Interfaces_to_Log_Analytics_workspace.policy_definition_id,
     module.Deploy_Diagnostic_Settings_for_Network_Security_Groups_to_Log_Analytics_workspace.policy_definition_id,
@@ -105,8 +103,8 @@ module "Deploy_Diagnostic_Settings_to_Log_Analytics_workspace_cc_root_s" {
 }
 
 
-module "Deploy_Diagnostic_Settings_for_Key_Vault_to_Log_Analytics_workspace_cc_root_s" {
-  source = "./modules/policy_assignment/Deploy_Diagnostic_Settings_for_Key_Vault_to_Log_Analytics_workspace/"
+module "Deploy_Diagnostic_Settings_for_Recovery_Services_Vault_to_Log_Analytics_workspace_for_resource_specific_categories_cc_root_s" {
+  source = "./modules/policy_assignment/Deploy_Diagnostic_Settings_for_Recovery_Services_Vault_to_Log_Analytics_workspace/"
   providers = {
     azurerm = azurerm.sandbox
   }
@@ -116,7 +114,7 @@ module "Deploy_Diagnostic_Settings_for_Key_Vault_to_Log_Analytics_workspace_cc_r
     name = data.azurerm_management_group.root.display_name
   }
   not_scopes   = []
-  description  = "Deploys the diagnostic settings for Key Vault to stream to a regional Log Analytics workspace when any Key Vault which is missing this diagnostic settings is created or updated."
+  description  = "Deploy Diagnostic Settings for Recovery Services Vault to stream to Log Analytics workspace for Resource specific categories. If any of the Resource specific categories are not enabled, a new diagnostic setting is created."
   location     = module.info.primary_region.name
   logAnalytics = data.terraform_remote_state.core.outputs.core_log_analytics_workspace_id
 
