@@ -105,6 +105,27 @@ module "Deploy_Diagnostic_Settings_to_Log_Analytics_workspace_cc_root_s" {
 }
 
 
+module "Deploy_Diagnostic_Settings_for_Key_Vault_to_Log_Analytics_workspace_cc_root_s" {
+  source = "./modules/policy_assignment/Deploy_Diagnostic_Settings_for_Key_Vault_to_Log_Analytics_workspace/"
+  providers = {
+    azurerm = azurerm.sandbox
+  }
+
+  management_group = {
+    id   = data.azurerm_management_group.root.id
+    name = data.azurerm_management_group.root.display_name
+  }
+  not_scopes   = []
+  description  = "Deploys the diagnostic settings for Key Vault to stream to a regional Log Analytics workspace when any Key Vault which is missing this diagnostic settings is created or updated."
+  location     = module.info.primary_region.name
+  logAnalytics = data.terraform_remote_state.core.outputs.core_log_analytics_workspace_id
+
+  depends_on = [
+    data.azurerm_management_group.root
+  ]
+}
+
+
 module "Configure_network_security_groups_to_enable_traffic_analytics_cc_root_s" {
   source = "./modules/policy_assignment/Configure_network_security_groups_to_enable_traffic_analytics/"
   providers = {
