@@ -1,8 +1,8 @@
 resource "azurerm_policy_definition" "this" {
-  name                  = "Deploy-Diagnostics-VirtualNetwork"
-  policy_type           = "Custom"
-  mode                  = "Indexed"
-  display_name          = "Deploy Diagnostic Settings for Virtual Network to Log Analytics workspace"
+  name                = "Deploy-Diagnostics-VirtualNetwork"
+  policy_type         = "Custom"
+  mode                = "Indexed"
+  display_name        = "Deploy Diagnostic Settings for Virtual Network to Log Analytics workspace"
   management_group_id = var.management_group_id == "" ? null : var.management_group_id
 
   metadata = <<METADATA

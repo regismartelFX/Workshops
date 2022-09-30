@@ -1,7 +1,7 @@
 resource "azurerm_policy_set_definition" "this" {
-  name                  = "Deploy_Diagnostic_Settings_to_Log_Analytics_workspace"
-  policy_type           = "Custom"
-  display_name          = "Deploy Diagnostic Settings to Log Analytics workspace"
+  name                = "Deploy_Diagnostic_Settings_to_Log_Analytics_workspace"
+  policy_type         = "Custom"
+  display_name        = "Deploy Diagnostic Settings to Log Analytics workspace"
   management_group_id = var.management_group_id == "" ? null : var.management_group_id
 
   parameters = <<PARAMETERS

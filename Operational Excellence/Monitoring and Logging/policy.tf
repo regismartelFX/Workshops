@@ -1,23 +1,3 @@
-data "azurerm_management_group" "root" {
-  name = "mg-root"
-}
-
-
-data "azurerm_resource_group" "networkwatcher" {
-  provider = azurerm.sandbox
-
-  name = "NetworkWatcherRG"
-}
-
-
-data "azurerm_network_watcher" "networkwatcher_canadacentral" {
-  provider = azurerm.sandbox
-
-  name                = "NetworkWatcher_canadacentral"
-  resource_group_name = data.azurerm_resource_group.networkwatcher.name
-}
-
-
 module "Deploy_Diagnostic_Settings_for_Automation_to_Log_Analytics_workspace" {
   source = "./modules/policy_definition/Deploy_Diagnostic_Settings_for_Automation_to_Log_Analytics_workspace"
   providers = {
@@ -204,7 +184,7 @@ module "Enable_Azure_Monitor_for_Virtual_Machine_Scale_Sets_cc_root_s" {
     id   = data.azurerm_management_group.root.id
     name = data.azurerm_management_group.root.display_name
   }
-  not_scopes = []
+  not_scopes     = []
   description    = "Enable Azure Monitor for the virtual machines in ${data.azurerm_management_group.root.name}."
   location       = module.info.primary_region.name
   logAnalytics_1 = data.terraform_remote_state.core.outputs.core_log_analytics_workspace_id
