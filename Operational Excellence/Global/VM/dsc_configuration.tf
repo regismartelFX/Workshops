@@ -3,7 +3,7 @@
 
 resource "azurerm_automation_module" "sqlserverdsc" {
   provider = azurerm.sandbox
-  count = module.info.dsc_sqlinstall
+  count = module.info.dsc_sqlinstall == true ? 1 : 0
      
   name                    = "SqlServerDsc"
   resource_group_name     = data.terraform_remote_state.core.outputs.core_resource_group_name
@@ -16,7 +16,7 @@ resource "azurerm_automation_module" "sqlserverdsc" {
 
 resource "azurerm_automation_dsc_configuration" "sqlinstall" {
   provider = azurerm.sandbox
-  count = module.info.dsc_sqlinstall  
+  count = module.info.dsc_sqlinstall == true ? 1 : 0
 
   name                    = "SQLInstall"
   resource_group_name     = data.terraform_remote_state.core.outputs.core_resource_group_name
@@ -27,7 +27,7 @@ resource "azurerm_automation_dsc_configuration" "sqlinstall" {
 
 resource "azurerm_automation_dsc_nodeconfiguration" "sqlinstall" {
   provider = azurerm.sandbox
-  count = module.info.dsc_sqlinstall  
+  count = module.info.dsc_sqlinstall == true ? 1 : 0
      
   name                    = "SQLInstall.localhost"
   resource_group_name     = data.terraform_remote_state.core.outputs.core_resource_group_name

@@ -1,6 +1,6 @@
 output "dsc_sqlinstall" {
-  description = "1 to install SQLServer using DSC, 0 to skip."
-  value       = 0
+  description = "true to install SQLServer using DSC, false to skip."
+  value       = false
 }
 
 

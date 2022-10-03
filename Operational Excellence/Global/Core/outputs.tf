@@ -34,6 +34,24 @@ output "core_log_analytics_workspace_id" {
 }
 
 
+output "core_log_analytics_workspace_workspace_id" {
+
+  value = azurerm_log_analytics_workspace.core.workspace_id
+}
+
+
+output "core_storage_account_name" {
+
+  value = azurerm_storage_account.core.name
+}
+
+
+output "core_storage_account_id" {
+
+  value = azurerm_storage_account.core.id
+}
+
+
 output "core_automation_account_name" {
 
   value = azurerm_automation_account.core.name
