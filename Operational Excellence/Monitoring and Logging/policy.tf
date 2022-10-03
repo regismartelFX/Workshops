@@ -87,6 +87,8 @@ module "Deploy_Diagnostic_Settings_to_Log_Analytics_workspace_initiative" {
   management_group_id = data.azurerm_management_group.root.id
   definition_references = [
     "/providers/Microsoft.Authorization/policyDefinitions/bef3f64c-5290-43b7-85b0-9b254eef4c47", #Deploy Diagnostic Settings for Key Vault to Log Analytics workspace
+    module.Deploy_Diagnostic_Settings_for_App_Service_Plan_to_Log_Analytics_workspace.policy_definition_id,
+    module.Deploy_Diagnostic_Settings_for_App_Service_to_Log_Analytics_workspace.policy_definition_id,
     module.Deploy_Diagnostic_Settings_for_Automation_to_Log_Analytics_workspace.policy_definition_id,
     module.Deploy_Diagnostic_Settings_for_Network_Interfaces_to_Log_Analytics_workspace.policy_definition_id,
     module.Deploy_Diagnostic_Settings_for_Network_Security_Groups_to_Log_Analytics_workspace.policy_definition_id,
