@@ -116,10 +116,6 @@ METADATA
                       "enabled": "[parameters('logsEnabled')]"
                     },
                     {
-                      "category": "AppServiceFileAuditLogs",
-                      "enabled": "[parameters('logsEnabled')]"
-                    },
-                    {
                       "category": "AppServiceAuditLogs",
                       "enabled": "[parameters('logsEnabled')]"
                     },
