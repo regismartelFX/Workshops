@@ -104,19 +104,11 @@ METADATA
                   ],
                   "logs": [
                     {
-                      "category": "AppServiceAntivirusScanAuditLogs",
-                      "enabled": "[parameters('logsEnabled')]"
-                    },
-                    {
                       "category": "AppServiceHTTPLogs",
                       "enabled": "[parameters('logsEnabled')]"
                     },
                     {
                       "category": "AppServiceConsoleLogs",
-                      "enabled": "[parameters('logsEnabled')]"
-                    },
-                    {
-                      "category": "AppServiceHTTPLogs",
                       "enabled": "[parameters('logsEnabled')]"
                     },
                     {
