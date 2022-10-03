@@ -1,3 +1,23 @@
+module "Deploy_Diagnostic_Settings_for_App_Service_Plan_to_Log_Analytics_workspace" {
+  source = "./modules/policy_definition/Deploy_Diagnostic_Settings_for_App_Service_Plan_to_Log_Analytics_workspace"
+  providers = {
+    azurerm = azurerm.sandbox
+  }
+
+  management_group_id = data.azurerm_management_group.root.id
+}
+
+
+module "Deploy_Diagnostic_Settings_for_App_Service_to_Log_Analytics_workspace" {
+  source = "./modules/policy_definition/Deploy_Diagnostic_Settings_for_App_Service_to_Log_Analytics_workspace"
+  providers = {
+    azurerm = azurerm.sandbox
+  }
+
+  management_group_id = data.azurerm_management_group.root.id
+}
+
+
 module "Deploy_Diagnostic_Settings_for_Automation_to_Log_Analytics_workspace" {
   source = "./modules/policy_definition/Deploy_Diagnostic_Settings_for_Automation_to_Log_Analytics_workspace"
   providers = {
