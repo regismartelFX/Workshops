@@ -13,15 +13,6 @@ output "vm" {
 }
 
 
-# output "rg" {
-#   value = [
-#     for rg in azurerm_resource_group.vm : {
-#       "${rg.name}" = rg.id
-#     }
-#   ]
-# }
-
-
 output "disk" {
   value = [
     for disk in data.azurerm_managed_disk.vm : {

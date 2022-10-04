@@ -10,12 +10,6 @@ output "linux" {
 }
 
 
-# output "linux_rg" {
-
-#   value = module.linux.rg
-# }
-
-
 output "linux_disk" {
 
   value = module.linux.disk
@@ -28,12 +22,6 @@ output "windows_svr" {
 }
 
 
-# output "windows_svr_rg" {
-
-#   value = module.windows_svr.rg
-# }
-
-
 output "windows_svr_disk" {
 
   value = module.windows_svr.disk
@@ -44,12 +32,6 @@ output "windows_wks" {
 
   value = module.windows_wks.vm
 }
-
-
-# output "windows_wks_rg" {
-
-#   value = module.windows_wks.rg
-# }
 
 
 output "windows_wks_disk" {
