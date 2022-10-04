@@ -142,3 +142,15 @@ SETTINGS
   }
 PROTECTED_SETTINGS
 }
+
+
+data "azurerm_managed_disk" "vm" {
+  count = var.quantity
+
+  name                = format("vm-${var.descriptive_context}-${var.environment}%02s-disk-os-01", count.index + var.seed)
+  resource_group_name = azurerm_resource_group.vm[count.index].name
+
+  depends_on = [
+    azurerm_windows_virtual_machine.vm
+  ]
+}

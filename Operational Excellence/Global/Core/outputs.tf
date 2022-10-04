@@ -16,6 +16,12 @@ output "core_virtual_network_name" {
 }
 
 
+output "core_virtual_network_id" {
+
+  value = azurerm_virtual_network.core.id
+}
+
+
 output "core_subnet_name" {
 
   value = azurerm_subnet.core.name
