@@ -3,14 +3,6 @@ data "azurerm_subscription" "sandbox" {
 }
 
 
-resource "azurerm_log_analytics_linked_service" "patchmanagement" {
-  provider = azurerm.sandbox
-
-  resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
-  workspace_id        = data.terraform_remote_state.core.outputs.core_log_analytics_workspace_id
-  read_access_id      = data.terraform_remote_state.core.outputs.core_automation_account_id
-}
-
 resource "azurerm_log_analytics_solution" "updates" {
   provider = azurerm.sandbox
 
@@ -23,11 +15,8 @@ resource "azurerm_log_analytics_solution" "updates" {
     publisher = "Microsoft"
     product   = "OMSGallery/Updates"
   }
-
-  depends_on = [
-    azurerm_log_analytics_linked_service.patchmanagement
-  ]
 }
+
 
 resource "azapi_resource" "windows_group_a" {
   type      = "Microsoft.Automation/automationAccounts/softwareUpdateConfigurations@2019-06-01"
@@ -38,7 +27,7 @@ resource "azapi_resource" "windows_group_a" {
     properties = {
       scheduleInfo = {
         description             = null
-        startTime               = timeadd(timestamp(), "10m") #"2022-09-21T17:00:00-04:00"
+        startTime               = timeadd(timestamp(), "10m")
         expiryTime              = "9999-12-31T18:59:00-05:00"
         expiryTimeOffsetMinutes = -300
         isEnabled               = true
@@ -94,7 +83,7 @@ resource "azapi_resource" "windows_group_b" {
     properties = {
       scheduleInfo = {
         description             = null
-        startTime               = timeadd(timestamp(), "10m") #"2022-09-21T17:00:00-04:00"
+        startTime               = timeadd(timestamp(), "10m")
         expiryTime              = "9999-12-31T18:59:00-05:00"
         expiryTimeOffsetMinutes = -300
         isEnabled               = true
@@ -150,7 +139,7 @@ resource "azapi_resource" "linux_group_a" {
     properties = {
       scheduleInfo = {
         description             = null
-        startTime               = timeadd(timestamp(), "10m") #"2022-09-21T17:00:00-04:00"
+        startTime               = timeadd(timestamp(), "10m")
         expiryTime              = "9999-12-31T18:59:00-05:00"
         expiryTimeOffsetMinutes = -300
         isEnabled               = true
@@ -165,12 +154,12 @@ resource "azapi_resource" "linux_group_a" {
       updateConfiguration = {
         duration        = "PT1H"
         operatingSystem = "Linux"
-        windows           = null
+        windows         = null
         linux = {
-          excludedPackageNameMasks             = []
-          includedPackageNameMasks              = []
-          includedPackageClassifications  = "Critical, Security, Other"
-          rebootSetting                 = "IfRequired"
+          excludedPackageNameMasks       = []
+          includedPackageNameMasks       = []
+          includedPackageClassifications = "Critical, Security, Other"
+          rebootSetting                  = "IfRequired"
         }
         azureVirtualMachines  = []
         nonAzureComputerNames = []

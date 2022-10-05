@@ -40,24 +40,24 @@ resource "azurerm_linux_web_app" "monlog" {
     "XDT_MicrosoftApplicationInsights_PreemptSdk"     = "disabled"
   }
 
-    sticky_settings {
-      app_setting_names = [
-        "APPINSIGHTS_INSTRUMENTATIONKEY",
-        "APPLICATIONINSIGHTS_CONNECTION_STRING ",
-        "APPINSIGHTS_PROFILERFEATURE_VERSION",
-        "APPINSIGHTS_SNAPSHOTFEATURE_VERSION",
-        "ApplicationInsightsAgent_EXTENSION_VERSION",
-        "XDT_MicrosoftApplicationInsights_BaseExtensions",
-        "DiagnosticServices_EXTENSION_VERSION",
-        "InstrumentationEngine_EXTENSION_VERSION",
-        "SnapshotDebugger_EXTENSION_VERSION",
-        "XDT_MicrosoftApplicationInsights_Mode",
-        "XDT_MicrosoftApplicationInsights_PreemptSdk",
-        "APPLICATIONINSIGHTS_CONFIGURATION_CONTENT",
-        "XDT_MicrosoftApplicationInsightsJava",
-        "XDT_MicrosoftApplicationInsights_NodeJS",
-      ]
-    }
+  sticky_settings {
+    app_setting_names = [
+      "APPINSIGHTS_INSTRUMENTATIONKEY",
+      "APPLICATIONINSIGHTS_CONNECTION_STRING ",
+      "APPINSIGHTS_PROFILERFEATURE_VERSION",
+      "APPINSIGHTS_SNAPSHOTFEATURE_VERSION",
+      "ApplicationInsightsAgent_EXTENSION_VERSION",
+      "XDT_MicrosoftApplicationInsights_BaseExtensions",
+      "DiagnosticServices_EXTENSION_VERSION",
+      "InstrumentationEngine_EXTENSION_VERSION",
+      "SnapshotDebugger_EXTENSION_VERSION",
+      "XDT_MicrosoftApplicationInsights_Mode",
+      "XDT_MicrosoftApplicationInsights_PreemptSdk",
+      "APPLICATIONINSIGHTS_CONFIGURATION_CONTENT",
+      "XDT_MicrosoftApplicationInsightsJava",
+      "XDT_MicrosoftApplicationInsights_NodeJS",
+    ]
+  }
 
 }
 
