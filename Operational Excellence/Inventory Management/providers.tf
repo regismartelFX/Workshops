@@ -12,8 +12,4 @@ provider "azurerm" {
   features {}
 }
 
-
-# provider "azapi" {
-# }
-
 # override this file locally https://www.terraform.io/language/files/override

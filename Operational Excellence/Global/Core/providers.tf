@@ -16,6 +16,9 @@ provider "azurerm" {
     key_vault {
       purge_soft_delete_on_destroy = true
     }
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
   }
 }
 
@@ -24,7 +27,14 @@ provider "azurerm" {
 #   subscription_id = "id Subsription #2"
 #   tenant_id       = "tenant_id"
 
-#   features {}
+#   features {
+#     key_vault {
+#       purge_soft_delete_on_destroy = true
+#     }
+#     resource_group {
+#       prevent_deletion_if_contains_resources = false
+#     }
+#   }
 # }
 
 # override this file locally https://www.terraform.io/language/files/override

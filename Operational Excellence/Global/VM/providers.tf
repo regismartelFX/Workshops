@@ -8,7 +8,11 @@ provider "azurerm" {
   subscription_id = "id Subsription #1"
   tenant_id       = "tenant_id"
 
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 }
 
 # provider "azurerm" {
@@ -16,7 +20,11 @@ provider "azurerm" {
 #   subscription_id = "id Subsription #2"
 #   tenant_id       = "tenant_id"
 
-#   features {}
+#   features {
+#     resource_group {
+#       prevent_deletion_if_contains_resources = false
+#     }
+#   }
 # }
 
 # override this file locally https://www.terraform.io/language/files/override
