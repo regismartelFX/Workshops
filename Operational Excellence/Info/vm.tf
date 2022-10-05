@@ -27,6 +27,12 @@ output "linux_size" {
 }
 
 
+output "linux_asr" {
+  description = "true to replicate VMs using Azure Site Recovery, false to skip."
+  value       = true
+}
+
+
 output "windows_svr_source_image_reference" {
   description = "Preferred publisher, offer, SKU and version for the Linux VMs."
   value = {
@@ -44,6 +50,12 @@ output "windows_svr_size" {
 }
 
 
+output "windows_svr_asr" {
+  description = "true to replicate VMs using Azure Site Recovery, false to skip."
+  value       = false
+}
+
+
 output "windows_wks_source_image_reference" {
   description = "Preferred publisher, offer, SKU and version for the Linux VMs."
   value = {
@@ -58,4 +70,10 @@ output "windows_wks_source_image_reference" {
 output "windows_wks_size" {
   description = "Preferred size for the Linux VMs."
   value       = "Standard_D2s_v3"
+}
+
+
+output "windows_wks_asr" {
+  description = "true to replicate VMs using Azure Site Recovery, false to skip."
+  value       = false
 }

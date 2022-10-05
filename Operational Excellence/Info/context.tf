@@ -1,6 +1,6 @@
 output "descriptive_context" {
   description = "Will be used to infer resources name."
-  value       = "demo"
+  value       = "demo" #Keep under 4 caracters to avoid having to rename resources, especially azurerm_storage_account.dr
 }
 
 
