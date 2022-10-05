@@ -12,7 +12,7 @@ provider "azurerm" {
 }
 
 # provider "azurerm" {
-#   alias           = "demo_2"
+#   alias           = "demo"
 #   subscription_id = "id Subsription #2"
 #   tenant_id       = "tenant_id"
 

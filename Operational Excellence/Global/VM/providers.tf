@@ -1,6 +1,10 @@
 provider "azurerm" {
 
-  features {}
+  features {
+    resource_group {
+      prevent_deletion_if_contains_resources = false
+    }
+  }
 }
 
 provider "azurerm" {
@@ -16,7 +20,7 @@ provider "azurerm" {
 }
 
 # provider "azurerm" {
-#   alias           = "demo_2"
+#   alias           = "demo"
 #   subscription_id = "id Subsription #2"
 #   tenant_id       = "tenant_id"
 
