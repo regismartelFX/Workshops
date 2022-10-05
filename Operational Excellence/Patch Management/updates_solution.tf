@@ -2,7 +2,7 @@ data "azurerm_subscription" "sandbox" {
   provider = azurerm.sandbox
 }
 
-
+#This needs to be moved to Core
 resource "azurerm_log_analytics_linked_service" "patchmanagement" {
   provider = azurerm.sandbox
 
