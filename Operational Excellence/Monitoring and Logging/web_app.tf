@@ -80,7 +80,7 @@ resource "azurerm_app_service_source_control" "monlog" {
   provider = azurerm.sandbox
 
   app_id                 = azurerm_linux_web_app.monlog.id
-  repo_url               = "https://github.com/Azure-Samples/nodejs-docs-hello-world"
+  repo_url               = "https://github.com/Azure-Samples/html-docs-hello-world"
   branch                 = "master"
   use_manual_integration = true
   use_mercurial          = false
