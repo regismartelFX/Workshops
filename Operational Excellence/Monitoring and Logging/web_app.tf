@@ -4,7 +4,7 @@ resource "azurerm_service_plan" "monlog" {
   name                = "plan-${module.info.descriptive_context}-${module.info.primary_region.code}-${module.info.sandbox.short_name}01"
   resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
   location            = module.info.primary_region.name
-  sku_name            = "P1v2"
+  sku_name            = "F1"
   os_type             = "Linux"
 }
 
