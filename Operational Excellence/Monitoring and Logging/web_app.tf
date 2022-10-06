@@ -38,6 +38,7 @@ resource "azurerm_linux_web_app" "monlog" {
     "XDT_MicrosoftApplicationInsights_Mode"           = "recommended"
     "XDT_MicrosoftApplicationInsights_NodeJS"         = "1"
     "XDT_MicrosoftApplicationInsights_PreemptSdk"     = "disabled"
+    "ENABLE_ORYX_BUILD"                               = "false"
   }
 
   sticky_settings {
