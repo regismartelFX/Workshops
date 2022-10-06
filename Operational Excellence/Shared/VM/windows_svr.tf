@@ -6,6 +6,7 @@ module "windows_svr" {
 
   quantity                            = 2
   seed                                = 3
+  deploy_to_availability_zone = true
   descriptive_context                 = "${module.info.descriptive_context}svr"
   environment                         = module.info.sandbox.short_name
   location                            = module.info.primary_region.name
