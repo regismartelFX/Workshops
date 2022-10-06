@@ -16,25 +16,25 @@ output "email_receiver_email_address" {
 }
 
 
-output "core_key_vault_random" {
+output "core_key_vault_unique" {
   description = "5 characters [a-z0-9] that will be used to make the core key vault resource name unique."
   value       = "x4jn3"
 }
 
 
-output "core_storage_account_random" {
+output "core_storage_account_unique" {
   description = "5 characters [a-z0-9] that will be used to make the core storage account resource name unique."
   value       = "77d7h"
 }
 
 
-output "vm_storage_account_random" {
+output "vm_storage_account_unique" {
   description = "5 characters [a-z0-9] that will be used to make the vm storage account resource name unique."
   value       = "90qzo"
 }
 
 
-output "dr_storage_account_random" {
+output "dr_storage_account_unique" {
   description = "5 characters [a-z0-9] that will be used to make the dr storage account resource name unique."
   value       = "g6gcv"
 }
