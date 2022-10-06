@@ -17,7 +17,7 @@ They consist in:
 - Shared\VM:  
     - Resource groups, 1 per VM  
     - 2 linux VMs  
-    - 2 Windows server VMs  
+    - 2 Windows server VMs, deployed in different Availability Zones  
     - 2 Windows workstation VMs  
 - Shared\Bastion:  
     - Bastion host, to connect to the virtual machine (provision only when needed to avoid costs)  
@@ -63,3 +63,5 @@ The "Info" folder holds a module containing only outputs that can be used to cus
 5. Deploy "Shared\VM".  
 6. Deploy "Shared\Bastion" if you need to customize the VMs, for example to install a SQL Server using DSC in order to demonstrate database backup.  
 7. Deploy any or all presentation topics folders.  Consider making your deployments a few days prior to the presentation to have backups, patched VMs, logs, etc. to make demonstrations during the presentation.  
+8. For each policy having a DeployIfNotExists or Modify effect, edit the assignement and save it with out making any change to **trigger the Role Assignments creation** (terraform bug).  
+9. **Run Remediation tasks** to ensure policies are being applied to all deployed resources.  This is because some policies are created after the resources onto which they apply.  
