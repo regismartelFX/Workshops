@@ -98,6 +98,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     azurerm_network_interface.vm[count.index].id,
   ]
   tags = { for i, v in var.tags : i => element(v, count.index) }
+  zone = var.deploy_to_availability_zone ? ((count.index + var.seed) % 3) + 1 : null
 
   boot_diagnostics {
     storage_account_uri = data.azurerm_storage_account.stdiag.primary_blob_endpoint

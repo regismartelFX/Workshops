@@ -1,7 +1,7 @@
 resource "azurerm_storage_account" "dr" {
   provider = azurerm.sandbox
 
-  name                     = "st${module.info.descriptive_context}asrcache${module.info.primary_region.code}${module.info.sandbox.short_name}${module.info.dr_storage_account_random}"
+  name                     = "st${module.info.descriptive_context}asrcache${module.info.primary_region.code}${module.info.sandbox.short_name}${module.info.dr_storage_account_unique}"
   resource_group_name      = data.terraform_remote_state.core.outputs.core_resource_group_name
   location                 = module.info.primary_region.name
   account_tier             = "Standard"

@@ -4,7 +4,7 @@ resource "azurerm_service_plan" "monlog" {
   name                = "plan-${module.info.descriptive_context}-${module.info.primary_region.code}-${module.info.sandbox.short_name}01"
   resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
   location            = module.info.primary_region.name
-  sku_name            = "P1v2"
+  sku_name            = "F1"
   os_type             = "Linux"
 }
 
@@ -38,6 +38,7 @@ resource "azurerm_linux_web_app" "monlog" {
     "XDT_MicrosoftApplicationInsights_Mode"           = "recommended"
     "XDT_MicrosoftApplicationInsights_NodeJS"         = "1"
     "XDT_MicrosoftApplicationInsights_PreemptSdk"     = "disabled"
+    "ENABLE_ORYX_BUILD"                               = "false"
   }
 
   sticky_settings {
@@ -79,7 +80,7 @@ resource "azurerm_app_service_source_control" "monlog" {
   provider = azurerm.sandbox
 
   app_id                 = azurerm_linux_web_app.monlog.id
-  repo_url               = "https://github.com/Azure-Samples/nodejs-docs-hello-world"
+  repo_url               = "https://github.com/Azure-Samples/html-docs-hello-world"
   branch                 = "master"
   use_manual_integration = true
   use_mercurial          = false

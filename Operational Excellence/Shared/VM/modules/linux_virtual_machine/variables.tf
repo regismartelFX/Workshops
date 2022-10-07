@@ -44,6 +44,13 @@ variable "environment" {
 }
 
 
+variable "deploy_to_availability_zone" {
+  type        = bool
+  default     = false
+  description = "True to deploy to Availability Zones.  Zone = ((vm count + seed) % 3) + 1."
+}
+
+
 variable "location" {
   type = string
 }

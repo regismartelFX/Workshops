@@ -12,7 +12,7 @@ resource "azurerm_log_analytics_workspace" "core" {
 resource "azurerm_log_analytics_linked_service" "core" {
   provider = azurerm.sandbox
 
-  resource_group_name = data.terraform_remote_state.core.outputs.core_resource_group_name
-  workspace_id        = data.terraform_remote_state.core.outputs.core_log_analytics_workspace_id
-  read_access_id      = data.terraform_remote_state.core.outputs.core_automation_account_id
+  resource_group_name = azurerm_resource_group.core.name
+  workspace_id        = azurerm_log_analytics_workspace.core.id
+  read_access_id      = azurerm_automation_account.core.id
 }

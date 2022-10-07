@@ -1,7 +1,7 @@
 resource "azurerm_key_vault" "core" {
   provider = azurerm.sandbox
 
-  name                            = "kv${module.info.descriptive_context}${module.info.primary_region.code}${module.info.sandbox.short_name}${module.info.core_key_vault_random}"
+  name                            = "kv${module.info.descriptive_context}${module.info.primary_region.code}${module.info.sandbox.short_name}${module.info.core_key_vault_unique}"
   location                        = module.info.primary_region.name
   resource_group_name             = azurerm_resource_group.core.name
   enabled_for_disk_encryption     = true
@@ -19,17 +19,20 @@ resource "azurerm_key_vault" "core" {
     key_permissions = [
       "List",
       "Get",
+      "Delete"
     ]
 
     secret_permissions = [
       "List",
       "Get",
-      "Set"
+      "Set",
+      "Delete"
     ]
 
     certificate_permissions = [
       "List",
       "Get",
+      "Delete"
     ]
   }
 }
