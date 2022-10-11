@@ -29,7 +29,7 @@ output "linux_size" {
 
 output "linux_asr" {
   description = "true to replicate VMs using Azure Site Recovery, false to skip."
-  value       = true
+  value       = false
 }
 
 
@@ -75,5 +75,5 @@ output "windows_wks_size" {
 
 output "windows_wks_asr" {
   description = "true to replicate VMs using Azure Site Recovery, false to skip."
-  value       = false
+  value       = true
 }
