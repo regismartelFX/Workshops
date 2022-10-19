@@ -63,5 +63,4 @@ The "Info" folder holds a module containing only outputs that can be used to cus
 5. Deploy "Shared\VM".  
 6. Deploy "Shared\Bastion" if you need to customize the VMs, for example to install a SQL Server using DSC in order to demonstrate database backup.  
 7. Deploy any or all presentation topics folders.  Consider making your deployments a few days prior to the presentation to have backups, patched VMs, logs, etc. to make demonstrations during the presentation.  
-8. For each policy having a DeployIfNotExists or Modify effect, edit the assignement and save it with out making any change to **trigger the Role Assignments creation** (terraform bug).  
-9. **Run Remediation tasks** to ensure policies are being applied to all deployed resources.  This is because some policies are created after the resources onto which they apply.  
+8. **Run Remediation tasks** to ensure policies are being applied to all deployed resources.  This is because some policies are created after the resources onto which they apply.  
